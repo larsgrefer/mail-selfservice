@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+
+<h:body>
+    <p:messages>
+        <p:autoUpdate/>
+    </p:messages>
+
+    <h:panelGrid columns="2">
+
+        <h:outputText value="Benutzername"/>
+        <h:outputText value="#{userBean.account.username}"/>
+
+        <h:outputText value="Mail Quota"/>
+        <h:outputText value="#{userBean.account.account.quota.toMegabytes()} MB"/>
+
+    </h:panelGrid>
+
+    <p:panel header="Passwort ändern">
+
+        <h:form>
+            <h:panelGrid columns="2" cellpadding="5">
+
+                <p:outputLabel for="password1" value="Neues Passwort"/>
+                <p:password id="password1" value="#{userBean.password1}" feedback="true"/>
+
+                <p:outputLabel for="password2" value="Neues Passwort wiederholen"/>
+                <p:password id="password2" value="#{userBean.password2}"/>
+
+            </h:panelGrid>
+
+            <p:commandButton value="Passwort ändern" action="#{userBean.updatePassword}"/>
+        </h:form>
+    </p:panel>
+</h:body>
+</html>
