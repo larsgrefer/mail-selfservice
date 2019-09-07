@@ -1,5 +1,7 @@
 package de.greferhosting.selfservice;
 
+import de.greferhosting.selfservice.service.DoveadmPasswordEncoder;
+import de.greferhosting.selfservice.service.MailUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

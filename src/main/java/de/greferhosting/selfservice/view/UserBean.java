@@ -1,6 +1,6 @@
 package de.greferhosting.selfservice.view;
 
-import de.greferhosting.selfservice.MailUserService;
+import de.greferhosting.selfservice.service.MailUserService;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.web.jsf.FacesContextUtils;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

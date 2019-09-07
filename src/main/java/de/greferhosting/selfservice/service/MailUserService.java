@@ -1,4 +1,4 @@
-package de.greferhosting.selfservice;
+package de.greferhosting.selfservice.service;
 
 import de.greferhosting.selfservice.entity.Account;
 import de.greferhosting.selfservice.repository.UserRepository;

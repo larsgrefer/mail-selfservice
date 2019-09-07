@@ -1,4 +1,4 @@
-package de.greferhosting.selfservice;
+package de.greferhosting.selfservice.service;
 
 import lombok.SneakyThrows;
 import okio.Okio;
