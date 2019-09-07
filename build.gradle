@@ -3,13 +3,13 @@ plugins {
     id "io.freefair.lombok" version "4.0.1"
     id "io.freefair.github.package-registry-maven-publish" version "4.0.1"
     id "io.freefair.maven-publish-java" version "4.0.1"
+    id "io.freefair.git-version" version "4.0.1"
 }
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'de.grefer-hosting'
-version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
@@ -17,6 +17,7 @@ repositories {
 }
 
 github {
+    slug = "larsgrefer/mail-selfservice"
     username = findProperty('githubUsername')
     token = findProperty('githubToken')
 }
@@ -31,4 +32,6 @@ dependencies {
 
     runtimeOnly 'mysql:mysql-connector-java'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    testRuntime 'com.h2database:h2'
 }
