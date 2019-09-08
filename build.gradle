@@ -1,5 +1,5 @@
 plugins {
-    id 'org.joinfaces' version '4.0.7'
+    id 'org.joinfaces' version '4.0.8'
     id "io.freefair.lombok" version "4.0.1"
     id "io.freefair.github.package-registry-maven-publish" version "4.0.1"
     id "io.freefair.maven-publish-java" version "4.0.1"
