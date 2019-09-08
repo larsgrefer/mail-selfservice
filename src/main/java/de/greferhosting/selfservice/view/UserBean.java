@@ -24,7 +24,7 @@ public class UserBean {
     @Autowired
     private MailUserService mailUserService;
 
-    public MailUserService.MailUserDetails getAccount() {
+    public MailUserService.MailUserDetails getUser() {
         return (MailUserService.MailUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
@@ -42,7 +42,8 @@ public class UserBean {
 
         String encodedPassword = passwordEncoder.encode(password1);
 
-        mailUserService.updatePassword((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal(), encodedPassword);
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        mailUserService.updatePassword(userDetails, encodedPassword);
 
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Passwort erfolgreich geändert"));

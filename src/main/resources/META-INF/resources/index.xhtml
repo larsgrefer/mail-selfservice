@@ -9,15 +9,22 @@
         <p:autoUpdate/>
     </p:messages>
 
-    <h:panelGrid columns="2">
+    <p:panel header="Meine Daten">
 
-        <h:outputText value="Benutzername"/>
-        <h:outputText value="#{userBean.account.username}"/>
+        <h:panelGrid columns="2">
 
-        <h:outputText value="Mail Quota"/>
-        <h:outputText value="#{userBean.account.account.quota.toMegabytes()} MB"/>
+            <h:outputText value="ID"/>
+            <h:outputText value="#{userBean.user.account.id}"/>
 
-    </h:panelGrid>
+            <h:outputText value="Benutzername"/>
+            <h:outputText value="#{userBean.user.username}"/>
+
+            <h:outputText value="Mail Quota"/>
+            <h:outputText value="#{userBean.user.account.quota.toMegabytes()} MB"/>
+
+        </h:panelGrid>
+
+    </p:panel>
 
     <p:panel header="Passwort ändern">
 
