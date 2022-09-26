@@ -8,7 +8,12 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'de.grefer-hosting'
-sourceCompatibility = '11'
+
+java {
+    toolchain{
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 
 repositories {
     mavenCentral()
