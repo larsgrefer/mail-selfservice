@@ -10,7 +10,7 @@ apply plugin: 'io.spring.dependency-management'
 group = 'de.grefer-hosting'
 
 java {
-    toolchain{
+    toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }
 }
@@ -25,17 +25,20 @@ bootJar {
 
 dependencies {
     implementation 'org.joinfaces:jsf-spring-boot-starter'
-    implementation 'org.joinfaces:rewrite-spring-boot-starter'
     implementation 'org.primefaces:primefaces'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
 
-    implementation 'com.squareup.okio:okio:2.10.+'
+    implementation 'commons-codec:commons-codec'
 
-    runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
     testRuntimeOnly 'com.h2database:h2'
 }
 
-test.useJUnitPlatform()
+test {
+    useJUnitPlatform()
+    jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED")
+}

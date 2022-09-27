@@ -1,39 +1,39 @@
 package de.greferhosting.selfservice;
 
-import de.greferhosting.selfservice.service.DoveadmPasswordEncoder;
-import de.greferhosting.selfservice.service.MailUserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import de.greferhosting.selfservice.service.Sha256CryptPasswordEncoder;
+import de.greferhosting.selfservice.service.Sha512CryptPasswordEncoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-
-    @Autowired
-    private MailUserService mailUserService;
+public class SecurityConfiguration {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new DoveadmPasswordEncoder();
+        Map<String, PasswordEncoder> idToPasswordEncoder = new HashMap<>();
+
+        idToPasswordEncoder.put("SHA512-CRYPT", new Sha512CryptPasswordEncoder());
+        idToPasswordEncoder.put("SHA256-CRYPT", new Sha256CryptPasswordEncoder());
+
+        return new DelegatingPasswordEncoder("SHA512-CRYPT", idToPasswordEncoder);
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.formLogin().and()
                 .httpBasic().and()
                 .authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();
-    }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(mailUserService)
-                .passwordEncoder(passwordEncoder());
+        return http.build();
     }
 }
