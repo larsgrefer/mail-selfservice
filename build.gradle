@@ -1,7 +1,7 @@
 plugins {
     id 'org.joinfaces' version '4.7.6'
     id "io.freefair.lombok" version "6.6"
-    id "io.freefair.git-version" version "6.5.1"
+    id "io.freefair.git-version" version "6.6"
 }
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
