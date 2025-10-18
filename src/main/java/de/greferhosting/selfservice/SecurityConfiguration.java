@@ -4,7 +4,9 @@ import de.greferhosting.selfservice.service.Sha256CryptPasswordEncoder;
 import de.greferhosting.selfservice.service.Sha512CryptPasswordEncoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -27,12 +29,14 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.formLogin().and()
-                .httpBasic().and()
-                .authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-                .csrf().disable();
+
+        http.formLogin(Customizer.withDefaults());
+
+        http.httpBasic(Customizer.withDefaults());
+
+        http.authorizeHttpRequests(authorizeRequests -> authorizeRequests.anyRequest().authenticated());
+
+        http.csrf(AbstractHttpConfigurer::disable);
 
         return http.build();
     }
