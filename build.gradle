@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.5.7'
+    id 'org.springframework.boot' version '4.1.1'
     id "io.freefair.lombok"
     id "io.freefair.git-version"
 }
@@ -18,11 +18,11 @@ repositories {
 }
 
 bootJar {
-    launchScript()
+    //launchScript()
 }
 
 dependencies {
-    implementation platform('org.joinfaces:joinfaces-platform:5.5.7')
+    implementation platform('org.joinfaces:joinfaces-platform:6.1.1')
 
     implementation 'org.joinfaces:faces-spring-boot-starter'
     implementation 'org.primefaces:primefaces::jakarta'
